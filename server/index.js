@@ -9,6 +9,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Pawssible backend is running 🚀");
+});
+
 app.post("/api/chat", async (req, res) => {
   try {
     console.log("Incoming Request:");
