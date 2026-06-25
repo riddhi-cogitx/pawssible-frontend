@@ -45,72 +45,14 @@ export default function App() {
   };
 
   return (
-    <>
-      <Header onSearch={handleSearch} />
-      <Hero
-        onShopClick={() => document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' })}
-        onAdvisorClick={() => document.getElementById('advisor')?.scrollIntoView({ behavior: 'smooth' })}
-      />
-      <Services />
-      <Categories onSelect={handleCategory} />
-      {/* <BestSellers filterCategory={filterCategory} showToast={showToast} /> */}
-
-      {searchResults !== null && (
-        <section className="search-results-section" id="search-results-section">
-          <div className="results-header">
-            <div className="results-title">
-              {searchLoading ? 'Searching...' : `Results for "${searchQuery}" (${searchResults.length})`}
-            </div>
-            <button className="close-btn" onClick={() => setSearchResults(null)}>✕ Close</button>
-          </div>
-          {searchLoading ? (
-            <div className="products-grid">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <div className="skeleton-card" key={i}>
-                  <div className="skeleton-img skeleton" />
-                  <div className="skeleton-body">
-                    <div className="skeleton-line skeleton short" />
-                    <div className="skeleton-line skeleton medium" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : searchResults.length > 0 ? (
-            <div className="products-grid">
-              {searchResults.map((p, i) => (
-                <ProductCard
-                  key={i}
-                  product={p}
-                  onAddCart={name => showToast(`${name.slice(0,28)}... added to cart!`)}
-                  onWishlist={() => showToast('Saved to wishlist ♡')}
-                />
-              ))}
-            </div>
-          ) : (
-            <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '3rem' }}>
-              No products found for "{searchQuery}".
-            </p>
-          )}
-        </section>
-      )}
-
-      <PromoBanners onCategory={handleCategory} />
-      <AIAdvisor />
-      <HealthTips />
-      <Brands />
-
-      <div className="cta-banner">
-        <h2>Not sure what your pet needs?<br />Ask our AI in seconds.</h2>
-        <button
-          className="btn-white"
-          onClick={() => document.getElementById('advisor')?.scrollIntoView({ behavior: 'smooth' })}
-        >
-          Try AI Advisor →
-        </button>
-      </div>
-
-      <Footer />
-      <Toast toasts={toasts} />
-    </>
-  );
+  <div
+    style={{
+      fontSize: 40,
+      color: "red",
+      padding: 50,
+    }}
+  >
+    Hello Pawssible 🚀
+  </div>
+);
 }
