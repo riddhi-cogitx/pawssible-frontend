@@ -1,5 +1,7 @@
+const API = "https://pawssible-frontend.onrender.com/api/chat";
+
 export async function getRecommendations(text) {
-  const response = await fetch("/api/chat", {
+  const response = await fetch(API, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -13,6 +13,10 @@ app.get("/", (req, res) => {
   res.send("Pawssible backend is running 🚀");
 });
 
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" });
+});
+
 app.post("/api/chat", async (req, res) => {
   try {
     console.log("Incoming Request:");
