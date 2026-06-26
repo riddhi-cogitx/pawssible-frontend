@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { getRecommendations } from "../api/cogitx";
+import { CheckCircle2 } from "lucide-react";
 const API = 'https://pawssible-oi51.onrender.com';
 
 const HEALTH_CONCERNS = [
@@ -357,7 +358,25 @@ const reset = () => {
 };
   const canNext0 = form.query.trim() && form.pet;
   const canNext1 = true;
+const whyRecommendations = [];
 
+if (form.breed)
+  whyRecommendations.push(`Suitable for ${form.breed}`);
+
+if (form.stage)
+  whyRecommendations.push(`${form.stage} life stage`);
+
+if (form.lifestyle)
+  whyRecommendations.push(`${form.lifestyle} lifestyle`);
+
+if (form.budget)
+  whyRecommendations.push(`Fits ₹${form.budget} budget`);
+
+if (form.sensitivities)
+  whyRecommendations.push(`Suitable for ${form.sensitivities}`);
+
+if (form.concerns?.length)
+  whyRecommendations.push(...form.concerns);
   return (
     <section id="advisor" style={{
       background: `linear-gradient(135deg, #1C1917 0%, #2D2218 50%, #1C1917 100%)`,
@@ -596,6 +615,7 @@ const reset = () => {
             </>
           ) : (
             /* RESULTS */
+            
             <div>
               {loading ? (
                 <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
@@ -613,6 +633,56 @@ const reset = () => {
                 </div>
               ) : (
                 <>
+                {whyRecommendations.length > 0 && (
+  <div
+    style={{
+      marginBottom: "24px",
+      padding: "20px",
+      borderRadius: "16px",
+      background: "rgba(255,255,255,0.06)",
+      border: "1px solid rgba(255,255,255,0.08)",
+    }}
+  >
+    <h3
+      style={{
+        color: "var(--primary)",
+        marginBottom: "16px",
+        fontSize: "18px",
+        fontWeight: 700,
+      }}
+    >
+      💡 Why these recommendations?
+    </h3>
+
+    <div
+      style={{
+        display: "grid",
+        gap: "12px",
+      }}
+    >
+      {whyRecommendations.map((item, i) => (
+        <div
+          key={i}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            color: "#fff",
+            fontSize: "15px",
+          }}
+        >
+          <CheckCircle2
+            size={18}
+            color="var(--primary)"
+            strokeWidth={2.5}
+          />
+
+          <span>{item}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem', gap: '1rem', flexWrap: 'wrap' }}>
                     <div>
                       <div style={{ color: 'var(--primary)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>
